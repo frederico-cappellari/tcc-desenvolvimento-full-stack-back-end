@@ -1,0 +1,20 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "microprofile.tools.validation.unknown.excluded": [
+        "*/mp-rest/providers/*/priority",
+        "mp.openapi.schema.*",
+        "kafka-streams.*",
+        "camel.*",
+        "smallrye.jwt.sign.key-location",
+        "quarkus.datasource.*",
+        "quarkus.hibernate-orm.*",
+        "quarkus.smallrye-jwt.*",
+        "mp.*",
+        "smallrye.jwt.sign.key.location",
+        "smallrye.jwt.token.expiration",
+        "rabbitmq-host",
+        "rabbitmq-port",
+        "rabbitmq-username",
+        "rabbitmq-password"
+    ]
+}
