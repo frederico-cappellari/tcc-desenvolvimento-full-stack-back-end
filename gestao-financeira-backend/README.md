@@ -25,10 +25,6 @@ Este projeto tem como objetivo fornecer uma API para controle financeiro pessoal
 ## Instalação
 
 1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd gestao-financeira-backend
-   ```
 
 2. **Configure o banco de dados e RabbitMQ:**
    - Certifique-se de que o PostgreSQL e o RabbitMQ estejam rodando localmente.
