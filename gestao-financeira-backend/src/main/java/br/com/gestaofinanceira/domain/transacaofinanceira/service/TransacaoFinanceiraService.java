@@ -2,6 +2,7 @@ package br.com.gestaofinanceira.domain.transacaofinanceira.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gestaofinanceira.domain.transacaofinanceira.model.TransacaoFinanceiraEntity;
@@ -75,7 +76,7 @@ public class TransacaoFinanceiraService {
         if (transacao.getCategoria() == null) {
             throw new IllegalArgumentException("A Categoria deve ser informada.");
         }
-        repository.persist(transacao);
+        repository.persistAndFlush(transacao);
         return transacao;
     }
 
@@ -102,7 +103,14 @@ public class TransacaoFinanceiraService {
 
      public List<TransacaoFinanceiraEntity> listaPaginada(int pagina, int tamanhoPagina, boolean asc, Long usuarioId, String propriedade) {
         long totalEntidades = repository.count();
+        if (totalEntidades == 0) {
+            return new ArrayList<TransacaoFinanceiraEntity>();
+        }
         int qntPagina = (int) Math.ceil((double) totalEntidades / tamanhoPagina);
+        System.out.println("Quantidade de páginas: " + qntPagina);
+        System.out.println("Página solicitada: " + pagina);
+        System.out.println("pagina > qntPagina: " + (pagina > qntPagina));
+        System.out.println("pagina < 1: " + (pagina < 1));
         if (pagina > qntPagina || pagina < 1) {
             throw new IllegalArgumentException("Página fora do intervalo.");
         }

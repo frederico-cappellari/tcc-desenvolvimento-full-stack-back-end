@@ -30,7 +30,7 @@ public class NotaFiscalService {
         }
         notaFiscal.setData(LocalDate.now());
         notaFiscal.setSituacao(SituacaoNotaFiscalEnum.NAO_PROCESSADA);
-        repository.persist(notaFiscal);
+        repository.persistAndFlush(notaFiscal);
         notaFiscalMessageService.sendMessage(notaFiscal.getChaveDeAcesso());
         return notaFiscal;
     }

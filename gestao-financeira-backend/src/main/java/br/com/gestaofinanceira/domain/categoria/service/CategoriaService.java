@@ -20,7 +20,7 @@ public class CategoriaService {
 
     @Transactional
     public void salvar(CategoriaEntity entity) {
-        repository.persist(entity);
+        repository.persistAndFlush(entity);
     }
 
     public CategoriaEntity buscarPorId(Long id) {

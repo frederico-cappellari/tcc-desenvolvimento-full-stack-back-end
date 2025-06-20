@@ -38,7 +38,7 @@ public class ItemCompraService {
         if (itemCompraEntity.getDescricao() == null || itemCompraEntity.getDescricao().isEmpty()) {
             throw new IllegalArgumentException("A Descrição deve ser informada.");
         }
-        repository.persist(itemCompraEntity);
+        repository.persistAndFlush(itemCompraEntity);
     }
 
     public List<ItemCompraEntity> listaPaginada(int pagina, int tamanhoPagina, boolean asc, Long usuarioId, String propriedade) {

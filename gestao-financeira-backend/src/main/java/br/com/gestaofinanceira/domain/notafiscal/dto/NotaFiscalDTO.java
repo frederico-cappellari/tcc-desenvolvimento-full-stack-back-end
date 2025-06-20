@@ -9,7 +9,7 @@ public class NotaFiscalDTO {
     private String chaveDeAcesso;
     private String data;
     private String valorTotal;
-    private Boolean possuiItensNaoEncontradosNaLista;
+    private Boolean possuiItensNaoEncontrados;
     private String situacao;
     private String usuarioLogin;
 
@@ -21,7 +21,7 @@ public class NotaFiscalDTO {
         this.chaveDeAcesso = entity.getChaveDeAcesso();
         this.data = entity.getData() != null ? entity.getData().format(formatter) : "";
         this.valorTotal = entity.getValorTotal() != null ? entity.getValorTotal().toString() : null;
-        this.possuiItensNaoEncontradosNaLista = entity.getPossuiItensNaoEncontradosNaLista();
+        this.possuiItensNaoEncontrados = entity.getPossuiItensNaoEncontradosNaLista();
         this.situacao = entity.getSituacao() != null ? entity.getSituacao().getSituacao() : null;
         this.usuarioLogin = entity.getUsuario() != null ? entity.getUsuario().getLogin() : null;
     }
@@ -50,12 +50,12 @@ public class NotaFiscalDTO {
         this.valorTotal = valorTotal;
     }
 
-    public Boolean getPossuiItensNaoEncontradosNaLista() {
-        return possuiItensNaoEncontradosNaLista;
+    public Boolean getPossuiItensNaoEncontrados() {
+        return possuiItensNaoEncontrados;
     }
-
-    public void setPossuiItensNaoEncontradosNaLista(Boolean possuiItensNaoEncontradosNaLista) {
-        this.possuiItensNaoEncontradosNaLista = possuiItensNaoEncontradosNaLista;
+    
+    public void setPossuiItensNaoEncontrados(Boolean possuiItensNaoEncontrados) {
+        this.possuiItensNaoEncontrados = possuiItensNaoEncontrados;
     }
 
     public String getSituacao() {
