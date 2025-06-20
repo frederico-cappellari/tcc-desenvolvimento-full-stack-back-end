@@ -1,77 +1,70 @@
-# gestao-financeira-backend
+# Gestão Financeira Backend
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Finalidade do Projeto
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Este projeto tem como objetivo fornecer uma API para controle financeiro pessoal, permitindo o gerenciamento de receitas, despesas, categorias, itens de compra e notas fiscais. Ele foi desenvolvido como parte do Trabalho de Conclusão de Curso (TCC) da Pós-Graduação da PUC, utilizando o framework Quarkus para backend em Java.
 
-## Running the application in dev mode
+## Funcionalidades
 
-You can run your application in dev mode that enables live coding using:
+- Cadastro e autenticação de usuários
+- Gerenciamento de receitas e despesas
+- Controle de categorias financeiras
+- Registro e consulta de itens de compra
+- Emissão e consulta de notas fiscais
+- Integração com RabbitMQ para mensageria
+- Documentação automática via Swagger UI
 
-```shell script
-./mvnw quarkus:dev
-```
+## Pré-requisitos
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+- Java 17 ou superior
+- Maven 3.8.x ou superior
+- Docker (opcional, para subir RabbitMQ e PostgreSQL)
+- RabbitMQ rodando na porta padrão (`5672`)
+- PostgreSQL rodando na porta padrão (`5432`)
 
-## Packaging and running the application
+## Instalação
 
-The application can be packaged using:
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   cd gestao-financeira-backend
+   ```
 
-```shell script
-./mvnw package
-```
+2. **Configure o banco de dados e RabbitMQ:**
+   - Certifique-se de que o PostgreSQL e o RabbitMQ estejam rodando localmente.
+   - As credenciais e URLs padrão estão configuradas em `src/main/resources/application.properties`.
+   - Para subir via Docker:
+     ```bash
+     docker run --name postgres -e POSTGRES_USER=quarkus -e POSTGRES_PASSWORD=quarkus -e POSTGRES_DB=gestao_financeira -p 5432:5432 -d postgres:15
+     docker run --name rabbitmq -p 5672:5672 -p 15672:15672 -d rabbitmq:management
+     ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+3. **Compile o projeto:**
+   ```bash
+   ./mvnw clean package
+   ```
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+4. **Execute o projeto em modo desenvolvimento:**
+   ```bash
+   ./mvnw quarkus:dev
+   ```
+   O projeto estará disponível em [http://localhost:8080](http://localhost:8080).
 
-If you want to build an _über-jar_, execute the following command:
+5. **Acesse a documentação da API:**
+   - Swagger UI: [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui)
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+## Observações
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+- As configurações de conexão com banco de dados e RabbitMQ podem ser ajustadas no arquivo `src/main/resources/application.properties`.
+- Para rodar em produção, utilize o comando:
+  ```bash
+  java -jar target/quarkus-app/quarkus-run.jar
+  ```
+- Para gerar um executável nativo:
+  ```bash
+  ./mvnw package -Dnative
+  ```
 
-## Creating a native executable
+## Licença
 
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/gestao-financeira-backend-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Related Guides
-
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
-- RESTEasy Classic ([guide](https://quarkus.io/guides/resteasy)): REST endpoint framework implementing Jakarta REST and more
-- JDBC Driver - PostgreSQL ([guide](https://quarkus.io/guides/datasource)): Connect to the PostgreSQL database via JDBC
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
-
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+Este projeto é de uso acadêmico e está sob licença MIT.
